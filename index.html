@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procesos Industriales | Plataforma Educativa 2026</title>
+
+<!-- Carga de MathJax para fórmulas matemáticas -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+    :root {
+        --PI-gold: #D97706; --PI-dark: #022C22; --PI-blue: #064E3B; --PI-light: #10B981;
+        --accent: #DC2626; --accent-orange: #F59E0B; --accent-purple: #7C3AED;
+        --text: #111827; --white: #ffffff; --sand: #FEF3C7; --shadow: rgba(0, 0, 0, 0.25);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    ul:not(.map-tree), ol { padding-left: 2.4rem; margin: 0.5rem 0 1rem; }
+    ul:not(.map-tree) { list-style: none; }
+    ul:not(.map-tree) li, ol li { margin: 0.45rem 0; }
+
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    
+    header { background: linear-gradient(135deg, var(--PI-dark) 0%, var(--PI-blue) 100%); color: var(--white); padding: 2rem; text-align: center; box-shadow: 0 6px 20px var(--shadow); position: relative; overflow: hidden; border-bottom: 5px solid var(--PI-gold); }
+    .logo-container { display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .logo-pi { width: 100px; height: 100px; object-fit: contain; background: var(--white); border-radius: 50%; padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); color: var(--PI-gold); }
+    .subtitle { font-size: 1.2rem; opacity: 0.95; font-weight: 300; }
+    
+    .nav-container { background: var(--PI-dark); padding: 1rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px var(--shadow); border-bottom: 2px solid var(--PI-gold); }
+    .nav-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; max-width: 1400px; margin: 0 auto; }
+    .nav-btn { background: var(--PI-blue); color: var(--white); border: 1px solid var(--PI-gold); padding: 0.8rem 1.5rem; border-radius: 25px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
+    .nav-btn:hover, .nav-btn.active { background: var(--PI-gold); color: var(--PI-dark); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(234, 179, 8, 0.4); }
+    
+    .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+    .section { display: none; animation: fadeIn 0.5s ease; }
+    .section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .card { background: var(--white); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 8px 24px var(--shadow); border-left: 6px solid var(--PI-gold); transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-3px); }
+    h2 { color: var(--PI-blue); margin-bottom: 1.5rem; padding-bottom: 0.8rem; border-bottom: 3px solid var(--PI-gold); display: flex; align-items: center; gap: 0.8rem; font-size: 2rem; }
+    h3 { color: var(--PI-light); margin: 1.5rem 0 1rem; font-size: 1.5rem; }
+    h4 { color: var(--PI-dark); margin: 1rem 0 0.5rem; font-size: 1.2rem; }
+    p { margin-bottom: 1rem; }
+    
+    .info-box { background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%); border-left: 5px solid #3182ce; padding: 1.5rem; margin: 1.5rem 0; border-radius: 0 12px 12px 0; }
+    .tip-box { background: linear-gradient(135deg, #fefcbf 0%, #fef3c7 100%); border-left: 5px solid var(--PI-gold); padding: 1.5rem; margin: 1.5rem 0; border-radius: 0 12px 12px 0; }
+    .bio-box { background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%); border-left: 5px solid #319795; padding: 1.5rem; margin: 1.5rem 0; border-radius: 0 12px 12px 0; }
+    .problem-box { background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%); border-left: 5px solid #38a169; padding: 1.5rem; margin: 1.5rem 0; border-radius: 0 12px 12px 0; }
+    .sustain-box { background: linear-gradient(135deg, #f0fdf4 0%, #bbf7d0 100%); border-left: 5px solid #16a34a; padding: 1.5rem; margin: 1.5rem 0; border-radius: 0 12px 12px 0; }
+
+    /* Step by step problem styling */
+    .step-container { margin-top: 1rem; }
+    .step-btn { background: var(--PI-blue); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 0.5rem; transition: 0.3s; }
+    .step-btn:hover { background: var(--PI-gold); color: var(--PI-dark); }
+    .step-content { display: none; background: var(--white); border: 1px solid var(--PI-light); border-radius: 8px; padding: 1rem; margin-top: 0.8rem; animation: fadeIn 0.4s ease; }
+    .step-content.show { display: block; }
+    .final-answer { background: var(--PI-gold); color: var(--PI-dark); padding: 1rem; border-radius: 8px; font-weight: bold; text-align: center; margin-top: 1rem; }
+
+    .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .tab { background: #e2e8f0; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+    .tab.active { background: var(--PI-gold); color: var(--PI-dark); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.5s ease; }
+
+    /* Flashcards */
+    .fc-stats { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin: 1rem 0; }
+    .fc-stat { padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 700; color: #fff; font-size: 0.95rem; }
+    .fc-stat.good { background: #38a169; } .fc-stat.bad { background: #e53e3e; } .fc-stat.pending { background: #4a5568; }
+    .fc-progress { height: 10px; background: #e2e8f0; border-radius: 5px; overflow: hidden; max-width: 720px; margin: 0 auto 1.5rem; }
+    .fc-progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--PI-gold), var(--accent)); transition: width 0.4s; }
+    .flashcard-scene { perspective: 1400px; max-width: 720px; height: 320px; margin: 0 auto 1.5rem; }
+    .flashcard { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.6s; cursor: pointer; }
+    .flashcard.flipped { transform: rotateY(180deg); }
+    .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: auto; box-shadow: 0 8px 24px var(--shadow); font-size: 1.15rem; }
+    .fc-front { background: linear-gradient(135deg, var(--PI-dark), var(--PI-blue)); color: #fff; border: 3px solid var(--PI-gold); }
+    .fc-back { background: linear-gradient(135deg, #fff, #fefcbf); color: var(--text); border: 3px solid var(--PI-gold); transform: rotateY(180deg); }
+    .fc-label { font-size: 0.85rem; letter-spacing: 2px; font-weight: 800; color: var(--PI-gold); margin-bottom: 1rem; }
+    .fc-hint { margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; font-style: italic; }
+    .fc-controls { display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap; }
+    .fc-btn { border: none; padding: 0.9rem 2rem; border-radius: 30px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all 0.3s; color: #fff; }
+    .fc-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .fc-btn.good { background: #38a169; } .fc-btn.bad { background: #e53e3e; }
+    .fc-btn:not(:disabled):hover { transform: translateY(-3px); }
+
+    /* Map */
+    .map-container { overflow-x: auto; padding: 1rem 0; }
+    .map-tree, .map-tree ul { list-style: none; margin: 0; padding-left: 0; }
+    .map-tree ul { display: none; padding-left: 1.6rem; margin: 0.6rem 0 0; border-left: 3px solid var(--PI-gold); }
+    .map-tree li.open > ul { display: block; animation: fadeIn 0.4s ease; }
+    .map-tree li { margin: 0.4rem 0; }
+    .map-node { display: inline-block; background: var(--PI-dark); color: #fff; padding: 0.6rem 1.1rem; border-radius: 10px; cursor: pointer; font-weight: 600; transition: all 0.3s; border: 1px solid var(--PI-gold); }
+    .map-node:hover { background: var(--PI-gold); color: var(--PI-dark); transform: translateX(4px); }
+    .map-node.root { background: var(--accent); color: white; font-size: 1.15rem; border: none; }
+    .map-node.branch { background: var(--PI-blue); }
+    .map-leaf { display: inline-block; background: #fff; color: var(--text); padding: 0.45rem 0.9rem; border-radius: 8px; font-size: 0.95rem; border: 2px solid var(--PI-gold); }
+    li.has-children > .map-node::before { content: '▶ '; font-size: 0.8em; }
+    li.has-children.open > .map-node::before { content: '▼ '; font-size: 0.8em; }
+
+    /* Quiz */
+    .quiz-container { background: linear-gradient(135deg, var(--PI-dark) 0%, var(--PI-blue) 100%); color: var(--white); border-radius: 16px; padding: 2rem; margin: 2rem 0; border: 3px solid var(--PI-gold); }
+    .quiz-question-card { background: rgba(255, 255, 255, 0.08); border: 1px solid var(--PI-gold); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .quiz-question { font-size: 1.2rem; margin-bottom: 1rem; font-weight: 600; color: var(--PI-gold); }
+    .quiz-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.8rem; }
+    .quiz-option { background: var(--white); color: var(--text); border: 2px solid transparent; padding: 0.9rem 1.2rem; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; font-weight: 500; text-align: left; }
+    .quiz-option:hover:not(:disabled) { border-color: var(--PI-gold); transform: translateY(-2px); }
+    .quiz-option:disabled { cursor: not-allowed; opacity: 0.9; }
+    .quiz-option.correct { background: #38a169; color: white; border-color: #22543d; }
+    .quiz-option.incorrect { background: #e53e3e; color: white; border-color: #742a2a; }
+    .quiz-explanation { margin-top: 0.8rem; padding: 0.8rem; background: rgba(255,255,255,0.15); border-radius: 6px; font-size: 0.95rem; color: #fff; display: none; }
+    .quiz-progress { max-width: 720px; margin: 0 auto 1rem; }
+    .quiz-progress-bar-bg { height: 10px; background: #e2e8f0; border-radius: 5px; overflow: hidden; }
+    .quiz-progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--PI-gold), var(--accent-orange)); transition: width 0.4s; }
+    .quiz-stats { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin: 1rem 0; }
+    .quiz-stat { padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 700; color: #fff; font-size: 0.95rem; background: var(--PI-light); }
+
+    .calc-button { background: var(--PI-dark); color: var(--PI-gold); border: 2px solid var(--PI-gold); padding: 1rem 2rem; border-radius: 30px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin-top: 1rem; transition: all 0.3s ease; box-shadow: 0 4px 12px var(--shadow); }
+    .calc-button:hover { background: var(--PI-gold); color: var(--PI-dark); transform: translateY(-2px); }
+
+    .footer { background: var(--PI-dark); color: var(--white); text-align: center; padding: 2.5rem; margin-top: 3rem; border-top: 5px solid var(--PI-gold); }
+
+    @media (max-width: 768px) {
+        h1 { font-size: 1.8rem; } h2 { font-size: 1.5rem; }
+        .logo-container { flex-direction: column; gap: 1rem; } .logo-pi { width: 80px; height: 80px; }
+        .container { padding: 1rem; } .card { padding: 1.5rem; }
+        .nav-buttons { gap: 0.5rem; } .nav-btn { padding: 0.6rem 1rem; font-size: 0.85rem; }
+        .quiz-options { grid-template-columns: 1fr; }
+        .flashcard-scene { height: 360px; } .fc-face { font-size: 1rem; padding: 1rem; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+        <img src="LogoPI.png" alt="Logo Procesos Industriales" class="logo-pi">
+        <div>
+            <h1>PROCESOS INDUSTRIALES</h1>
+            <p class="subtitle">Ingeniería Industrial | Periodo Académico 2026-1</p>
+            <p class="subtitle">Termodinámica, Ciclos y Sostenibilidad</p>
+        </div>
+    </div>
+</header>
+
+<nav class="nav-container">
+    <div class="nav-buttons">
+        <button class="nav-btn active" onclick="showSection('inicio', this)">🏠 Inicio</button>
+        <button class="nav-btn" onclick="showSection('conceptos', this)">📚 Conceptos</button>
+        <button class="nav-btn" onclick="showSection('mapa', this)">🗺️ Mapa Conceptual</button>
+        <button class="nav-btn" onclick="showSection('flashcards', this)">🃏 Flashcards</button>
+        <button class="nav-btn" onclick="showSection('problemas', this)">📝 Problemas Paso a Paso</button>
+        <button class="nav-btn" onclick="showSection('quiz', this)">🎯 Quiz (30 Preguntas)</button>
+    </div>
+</nav>
+
+<div class="container">
+
+<!-- ============ INICIO ============ -->
+<section id="inicio" class="section active">
+    <div class="card">
+        <h2>🎯 Resultados del Aprendizaje</h2>
+        <div class="info-box">
+            <ul style="font-size: 1.1rem; line-height: 2;">
+                <li>✓ Diferenciar entre operaciones unitarias (cambios físicos) y procesos unitarios (cambios químicos).</li>
+                <li>✓ Clasificar procesos industriales según su forma de producción, estado y línea de producción.</li>
+                <li>✓ Aplicar la ecuación general de balance de energía y materia en estado estable y no estable.</li>
+                <li>✓ Resolver problemas de ciclos de refrigeración por compresión de vapor y ciclos de potencia (Rankine).</li>
+                <li>✓ Integrar principios de sostenibilidad (jerarquía de mitigación) en los balances de materia y energía.</li>
+            </ul>
+        </div>
+        <div class="bio-box">
+            <strong>💡 Relevancia Profesional:</strong> El ingeniero industrial utiliza el balance de energía para justificar cuánto entra y sale en cada unidad de proceso, determinando requerimientos de calor/trabajo y optimizando la sostenibilidad mediante la reducción de especies de impacto (CO₂, DQO) y el aumento de especies de valor.
+        </div>
+    </div>
+</section>
+
+<!-- ============ CONCEPTOS ============ -->
+<section id="conceptos" class="section">
+    <div class="card">
+        <h2>📚 Conceptos Clave</h2>
+        <div id="conceptos-tabs" class="tab-group">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('conceptos-tabs','sub-ops', this)">⚙️ Operaciones y Procesos</button>
+                <button class="tab" onclick="showTab('conceptos-tabs','sub-clasif', this)">🔀 Clasificación</button>
+                <button class="tab" onclick="showTab('conceptos-tabs','sub-energia', this)">⚡ Energía y Balances</button>
+                <button class="tab" onclick="showTab('conceptos-tabs','sub-sostenibilidad', this)">🌱 Sostenibilidad</button>
+            </div>
+
+            <div id="sub-ops" class="tab-content active">
+                <h3>Operaciones vs. Procesos Unitarios</h3>
+                <div class="info-box">
+                    <p><strong>Operaciones Unitarias:</strong> Etapas en las que la materia experimenta <em>cambios físicos</em>. No hay reacciones químicas. (Ej: Filtración, Secado, Evaporación, Destilación).</p>
+                    <p><strong>Procesos Unitarios:</strong> Etapas en las que la materia sufre una <em>transformación química o bioquímica</em> para obtener un producto de interés. (Ej: Combustión, Polimerización, Fermentación).</p>
+                </div>
+            </div>
+
+            <div id="sub-clasif" class="tab-content">
+                <h3>Clasificación de Procesos Industriales</h3>
+                <ul>
+                    <li><strong>Según forma de producción:</strong> Continuos (flujo sin interrupción), Discontinuos/Batch (carga, proceso, descarga, hay acumulación), Semicontinuos.</li>
+                    <li><strong>Según condiciones de variables:</strong> Estado Estable (variables no cambian con el tiempo, régimen permanente) y Estado NO Estable (transitorio, variables cambian).</li>
+                    <li><strong>Según línea de producción:</strong> En Serie (secuencia fija) y En Paralelo (flujo dividido en ramas para aumentar capacidad).</li>
+                    <li><strong>Según recirculación:</strong> Con Recirculación (mejora conversión), Con Recirculación y Purga (elimina inertes/impurezas), Con Derivación/Bypass (controla propiedades como temperatura).</li>
+                </ul>
+            </div>
+
+            <div id="sub-energia" class="tab-content">
+                <h3>Balances de Energía</h3>
+                <div class="tip-box">
+                    <strong>Ecuación General:</strong> $Acumulación = Entrada + Generación - Salida - Consumo$ <br>
+                    <strong>En Estado Estable (sin reacción):</strong> $Entrada = Salida$
+                </div>
+                <p>La energía se degrada (Segundo Principio): aunque la cantidad se conserva, su calidad disminuye, disipándose como calor no aprovechable.</p>
+            </div>
+
+            <div id="sub-sostenibilidad" class="tab-content">
+                <h3>Sostenibilidad en Procesos Industriales</h3>
+                <div class="sustain-box">
+                    <p>Capacidad de producir bienes minimizando el impacto ambiental, optimizando recursos y garantizando viabilidad económica y responsabilidad social.</p>
+                    <strong>Jerarquía de mitigación (orden de preferencia):</strong>
+                    <ol>
+                        <li>Prevenir (evitar formar residuos).</li>
+                        <li>Reducir (minimizar cantidades).</li>
+                        <li>Reutilizar/Reciclar (cerrar ciclos).</li>
+                        <li>Tratar (antes de descargar).</li>
+                        <li>Disponer (último recurso).</li>
+                    </ol>
+                </div>
+                <p>En balances de materia, se analizan <strong>especies de valor</strong> (reactivo clave, agua, energía embebida) y <strong>especies de impacto</strong> (DQO/DBO, CO₂, NOx, sólidos). La mejora sostenible busca reducir la "Generación" o "Salida" de estas últimas.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ MAPA CONCEPTUAL ============ -->
+<section id="mapa" class="section">
+    <div class="card">
+        <h2>🗺️ Mapa Conceptual: Procesos Industriales</h2>
+        <p style="margin-bottom:1rem;">Haz <strong>clic en cada nodo</strong> para desplegar u ocultar sus ramas.</p>
+        <div class="map-container">
+            <ul class="map-tree">
+                <li class="has-children">
+                    <div class="map-node root" onclick="toggleMap(this)">🏭 PROCESOS INDUSTRIALES</div>
+                    <ul>
+                        <li class="has-children">
+                            <div class="map-node branch" onclick="toggleMap(this)">⚙️ Etapas</div>
+                            <ul>
+                                <li><span class="map-leaf">Operaciones Unitarias (Cambios Físicos)</span></li>
+                                <li><span class="map-leaf">Procesos Unitarios (Cambios Químicos)</span></li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <div class="map-node branch" onclick="toggleMap(this)">🔀 Clasificación</div>
+                            <ul>
+                                <li><span class="map-leaf">Producción: Continuo, Discontinuo (Batch), Semicontinuo</span></li>
+                                <li><span class="map-leaf">Variables: Estado Estable, Estado No Estable</span></li>
+                                <li><span class="map-leaf">Línea: Serie, Paralelo</span></li>
+                                <li><span class="map-leaf">Flujo: Recirculación, Purga, Derivación (Bypass)</span></li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <div class="map-node branch" onclick="toggleMap(this)">🌱 Sostenibilidad</div>
+                            <ul>
+                                <li><span class="map-leaf">Objetivo: Minimizar impacto, optimizar recursos</span></li>
+                                <li><span class="map-leaf">Jerarquía: Prevenir > Reducir > Reciclar > Tratar > Disponer</span></li>
+                                <li><span class="map-leaf">Balances: Reducir especies de impacto (CO₂, DQO)</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FLASHCARDS ============ -->
+<section id="flashcards" class="section">
+    <div class="card">
+        <h2>🃏 Flashcards de Repaso (20)</h2>
+        <p>Haz <strong>clic en la tarjeta</strong> para voltearla. Evalúa tu dominio con los botones.</p>
+        <div class="fc-stats">
+            <span class="fc-stat good">✅ Buenas: <span id="fc-good">0</span></span>
+            <span class="fc-stat bad">❌ Malas: <span id="fc-bad">0</span></span>
+            <span class="fc-stat pending">⏳ Pendientes: <span id="fc-left">0</span></span>
+        </div>
+        <div class="fc-progress"><div class="fc-progress-bar" id="fc-bar"></div></div>
+        <div class="flashcard-scene" id="fc-scene">
+            <div class="flashcard" id="fc-card" onclick="flipCard()">
+                <div class="fc-face fc-front">
+                    <div class="fc-label">PREGUNTA</div>
+                    <div id="fc-question"></div>
+                    <span class="fc-hint">Clic para voltear ✨</span>
+                </div>
+                <div class="fc-face fc-back">
+                    <div class="fc-label">RESPUESTA</div>
+                    <div id="fc-answer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="fc-controls" id="fc-controls">
+            <button class="fc-btn good" id="btn-fc-good" onclick="gradeCard(true)" disabled>✅ La sabía</button>
+            <button class="fc-btn bad" id="btn-fc-bad" onclick="gradeCard(false)" disabled>❌ No la sabía</button>
+        </div>
+        <div style="text-align:center;">
+            <button class="calc-button" onclick="resetFlashcards()">🔄 Reiniciar Flashcards</button>
+        </div>
+    </div>
+</section>
+
+<!-- ============ PROBLEMAS PASO A PASO ============ -->
+<section id="problemas" class="section">
+    <div class="card">
+        <h2>📝 Problemas de Aplicación (Solución Interactiva)</h2>
+        <p>Resuelve mentalmente o en papel cada paso antes de revelarlo.</p>
+        
+        <div id="problemas-tabs" class="tab-group">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('problemas-tabs','prob-guia', this)">📘 Guía 1: Termodinámica y Ciclos</button>
+                <button class="tab" onclick="showTab('problemas-tabs','prob-sost', this)">🌱 Sostenibilidad Industrial</button>
+            </div>
+
+            <!-- PROBLEMAS GUÍA 1 -->
+            <div id="prob-guia" class="tab-content active">
+                
+                <!-- Problema 1 -->
+                <div class="problem-box">
+                    <h4>Problema 1: Calentador de Agua (Energía)</h4>
+                    <p>Una resistencia de calentamiento de 4 kW en un calentador de agua trabaja durante 3 horas. Determine la cantidad de energía eléctrica usada en kWh y en kJ. (1 kWh = 3600 kJ)</p>
+                    <button class="step-btn" onclick="revealStep('p1', 1)">Mostrar Paso 1: Datos</button>
+                    <div id="p1-s1" class="step-content">
+                        <strong>Datos:</strong> Potencia ($P$) = 4 kW, Tiempo ($t$) = 3 h.
+                    </div>
+                    <button class="step-btn" onclick="revealStep('p1', 2)" id="p1-b2" style="display:none;">Mostrar Paso 2: Fórmula y Cálculo kWh</button>
+                    <div id="p1-s2" class="step-content">
+                        $Energía (kWh) = Potencia (kW) \times Tiempo (h)$ <br>
+                        $E = 4 \text{ kW} \times 3 \text{ h} = 12 \text{ kWh}$
+                    </div>
+                    <button class="step-btn" onclick="revealStep('p1', 3)" id="p1-b3" style="display:none;">Mostrar Paso 3: Conversión a kJ</button>
+                    <div id="p1-s3" class="step-content">
+                        $1 \text{ kWh} = 3600 \text{ kJ}$ <br>
+                        $E = 12 \text{ kWh} \times 3600 \text{ kJ/kWh} = 43,200 \text{ kJ}$
+                    </div>
+                    <div id="p1-final" class="final-answer" style="display:none;">✅ Respuesta Final: 12 kWh y 43,200 kJ</div>
+                    <button class="step-btn" onclick="revealStep('p1', 4)" id="p1-b4" style="display:none; background: var(--PI-gold); color: var(--PI-dark);">Ver Respuesta Final</button>
+                </div>
+
+                <!-- Problema 2 -->
+                <div class="problem-box">
+                    <h4>Problema 2: Válvula de Purga (Estática de Fluidos)</h4>
+                    <p>Determine la masa de la válvula de purga de una olla a presión cuya presión de operación es 100 kPa manométrica y tiene un área de sección transversal de la abertura de 4 mm². Presión atmosférica = 101 kPa. (Respuesta esperada: 40.8 g)</p>
+                    <button class="step-btn" onclick="revealStep('p2', 1)">Mostrar Paso 1: Principio Físico</button>
+                    <div id="p2-s1" class="step-content">
+                        La válvula se levanta cuando la fuerza hacia arriba por la presión manométrica vence al peso de la válvula: $F_{presion} = Peso$
+                    </div>
+                    <button class="step-btn" onclick="revealStep('p2', 2)" id="p2-b2" style="display:none;">Mostrar Paso 2: Ecuaciones</button>
+                    <div id="p2-s2" class="step-content">
+                        $P_{man} \times A = m \times g$ <br>
+                        Despejando masa: $m = \frac{P_{man} \times A}{g}$
+                    </div>
+                    <button class="step-btn" onclick="revealStep('p2', 3)" id="p2-b3" style="display:none;">Mostrar Paso 3: Sustitución</button>
+                    <div id="p2-s3" class="step-content">
+                        $P_{man} = 100 \text{ kPa} = 100,000 \text{ N/m}^2$ <br>
+                        $A = 4 \text{ mm}^2 = 4 \times 10^{-6} \text{ m}^2$ <br>
+                        $g = 9.81 \text{ m/s}^2$ <br>
+                        $m = \frac{100,000 \times 4 \times 10^{-6}}{9.81} = \frac{0.4}{9.81} \approx 0.04077 \text{ kg}$
+                    </div>
+                    <div id="p2-final" class="final-answer" style="display:none;">✅ Respuesta Final: 40.8 g</div>
+                    <button class="step-btn" onclick="revealStep('p2', 4)" id="p2-b4" style="display:none; background: var(--PI-gold); color: var(--PI-dark);">Ver Respuesta Final</button>
+                </div>
+
+                <!-- Problema 3 -->
+                <div class="problem-box">
+                    <h4>Problema 3: Ciclo Ideal de Refrigeración (R-134a)</h4>
+                    <p>Ciclo ideal con R-134a. Presión en condensador = 1.00 MPa, evaporador = 0.140 MPa. Efecto deseado = 10 TR (Toneladas de Refrigeración). Determine: a) Potencia del compresor (kW), b) COP, c) Gasto másico (kg/s).</p>
+                    <button class="step-btn" onclick="revealStep('p3', 1)">Mostrar Paso 1: Propiedades y Conversión</button>
+                    <div id="p3-s1" class="step-content">
+                        De tablas R-134a (Ciclo ideal: entra como vapor sat. al compresor, sale como líq. sat. al condensador): <br>
+                        $h_1$ (vapor sat a 0.14 MPa) $\approx 239.16 \text{ kJ/kg}$ <br>
+                        $h_2$ (vapor sobrecalentado a 1.0 MPa, s1=s2) $\approx 280.0 \text{ kJ/kg}$ <br>
+                        $h_3 = h_4$ (líq. sat a 1.0 MPa) $\approx 107.32 \text{ kJ/kg}$ <br>
+                        Capacidad: $10 \text{ TR} \times 3.517 \text{ kW/TR} = 35.17 \text{ kW}$
+                    </div>
+                    <button class="step-btn" onclick="revealStep('p3', 2)" id="p3-b2" style="display:none;">Mostrar Paso 2: Gasto másico y Potencia</button>
+                    <div id="p3-s2" class="step-content">
+                        Efecto refrigerante: $q_L = h_1 - h_4 = 239.16 - 107.32 = 131.84 \text{ kJ/kg}$ <br>
+                        Gasto másico ($\dot{m}$) = $Q_L / q_L = 35.17 / 131.84 \approx 0.267 \text{ kg/s}$ <br>
+                        Potencia compresor ($\dot{W}$) = $\dot{m} \times (h_2 - h_1) = 0.267 \times (280.0 - 239.16) \approx 10.9 \text{ kW}$
+                    </div>
+                    <button class="step-btn" onclick="revealStep('p3', 3)" id="p3-b3" style="display:none;">Mostrar Paso 3: COP</button>
+                    <div id="p3-s3" class="step-content">
+                        $COP = \frac{q_L}{w_{comp}} = \frac{131.84}{280.0 - 239.16} = \frac{131.84}{40.84} \approx 3.22$
+                    </div>
+                    <div id="p3-final" class="final-answer" style="display:none;">✅ Respuestas: a) -10.9 kW, b) 3.21, c) 0.269 kg/s (Valores referenciales de tablas exactas)</div>
+                    <button class="step-btn" onclick="revealStep('p3', 4)" id="p3-b4" style="display:none; background: var(--PI-gold); color: var(--PI-dark);">Ver Respuesta Final</button>
+                </div>
+
+                <!-- Problema 4 -->
+                <div class="problem-box">
+                    <h4>Problema 4: Proceso Adiabático (Energía Interna)</h4>
+                    <p>Un gas se expande sin intercambio de calor (adiabático) de 500 K a 300 K. $C_v = 0.718 \text{ kJ/kg·K}$ y la masa es 2 kg. Determinar el cambio de energía interna ($\Delta U$).</p>
+                    <button class="step-btn" onclick="revealStep('p4', 1)">Mostrar Paso 1: Fórmula</button>
+                    <div id="p4-s1" class="step-content">
+                        Para un gas ideal, el cambio de energía interna depende solo de la temperatura: <br>
+                        $\Delta U = m \cdot C_v \cdot (T_2 - T_1)$
+                    </div>
+                    <button class="step-btn" onclick="revealStep('p4', 2)" id="p4-b2" style="display:none;">Mostrar Paso 2: Sustitución</button>
+                    <div id="p4-s2" class="step-content">
+                        $\Delta U = 2 \text{ kg} \times 0.718 \text{ kJ/kg·K} \times (300 \text{ K} - 500 \text{ K})$ <br>
+                        $\Delta U = 1.436 \times (-200) = -287.2 \text{ kJ}$
+                    </div>
+                    <div id="p4-final" class="final-answer" style="display:none;">✅ Respuesta Final: $\Delta U = -287.2 \text{ kJ}$ (El signo negativo indica que la energía interna disminuye, convirtiéndose en trabajo de expansión).</div>
+                    <button class="step-btn" onclick="revealStep('p4', 3)" id="p4-b3" style="display:none; background: var(--PI-gold); color: var(--PI-dark);">Ver Respuesta Final</button>
+                </div>
+            </div>
+
+            <!-- PROBLEMAS SOSTENIBILIDAD -->
+            <div id="prob-sost" class="tab-content">
+                
+                <!-- Problema 5 -->
+                <div class="sustain-box">
+                    <h4>Problema 5: Jerarquía de Mitigación</h4>
+                    <p>Una planta genera un efluente con alta DQO. Ordene las siguientes acciones según la jerarquía de mitigación de sostenibilidad (1 = más preferible, 5 = menos preferible): <br> A) Tratar el agua en una planta PTAR antes de verterla al río. <br> B) Modificar la reacción química para que no genere subproductos contaminantes. <br> C) Verter el efluente sin más en un relleno sanitario especializado (disponer). <br> D) Implementar un sistema de recirculación del agua residual dentro del mismo proceso. <br> E) Reducir la concentración del contaminante optimizando la temperatura del reactor.</p>
+                    <button class="step-btn" onclick="revealStep('p5', 1)">Mostrar Paso 1: Recordar la Jerarquía</button>
+                    <div id="p5-s1" class="step-content">
+                        El orden es: 1. Prevenir, 2. Reducir, 3. Reutilizar/Reciclar, 4. Tratar, 5. Disponer.
+                    </div>
+                    <button class="step-btn" onclick="revealStep('p5', 2)" id="p5-b2" style="display:none;">Mostrar Paso 2: Clasificación</button>
+                    <div id="p5-s2" class="step-content">
+                        B) Modificar la reacción = <strong>Prevenir</strong> (1) <br>
+                        E) Reducir concentración = <strong>Reducir</strong> (2) <br>
+                        D) Recirculación = <strong>Reutilizar/Reciclar</strong> (3) <br>
+                        A) PTAR = <strong>Tratar</strong> (4) <br>
+                        C) Relleno sanitario = <strong>Disponer</strong> (5)
+                    </div>
+                    <div id="p5-final" class="final-answer" style="display:none;">✅ Orden Correcto: 1-B, 2-E, 3-D, 4-A, 5-C</div>
+                    <button class="step-btn" onclick="revealStep('p5', 3)" id="p5-b3" style="display:none; background: var(--PI-gold); color: var(--PI-dark);">Ver Respuesta Final</button>
+                </div>
+
+                <!-- Problema 6 -->
+                <div class="sustain-box">
+                    <h4>Problema 6: Balance de Materia y Especies de Impacto</h4>
+                    <p>En un proceso en estado estable, ingresan 500 kg/h de materia prima. Se obtienen 420 kg/h de producto neto (especie de valor). El proceso genera 10 kg/h de residuos por degradación (generación interna). ¿Cuántos kg/h salen como "salidas no deseadas" (pérdidas de masa) si no hay acumulación?</p>
+                    <button class="step-btn" onclick="revealStep('p6', 1)">Mostrar Paso 1: Ecuación de Balance</button>
+                    <div id="p6-s1" class="step-content">
+                        Estado estable: $Acumulación (0) = Entrada - Salida + Generación - Consumo$ <br>
+                        Simplificando para masa total: $Entrada = Salida_{total}$ (La generación y consumo se transforman, pero la masa total se conserva, o podemos verlo como: $Entrada = Producto + Perdidas$).
+                    </div>
+                    <button class="step-btn" onclick="revealStep('p6', 2)" id="p6-b2" style="display:none;">Mostrar Paso 2: Cálculo</button>
+                    <div id="p6-s2" class="step-content">
+                        $500 \text{ kg/h} = 420 \text{ kg/h (producto)} + X \text{ kg/h (pérdidas no deseadas)}$ <br>
+                        $X = 500 - 420 = 80 \text{ kg/h}$
+                    </div>
+                    <div id="p6-final" class="final-answer" style="display:none;">✅ Respuesta Final: 80 kg/h de salidas no deseadas. (El objetivo de sostenibilidad es reducir esta cifra mediante reciclo o mejor selectividad).</div>
+                    <button class="step-btn" onclick="revealStep('p6', 3)" id="p6-b3" style="display:none; background: var(--PI-gold); color: var(--PI-dark);">Ver Respuesta Final</button>
+                </div>
+
+                <!-- Problema 7 -->
+                <div class="sustain-box">
+                    <h4>Problema 7: Optimización Energética</h4>
+                    <p>Una planta consume 12,000 kWh/mes. Se propone una integración energética que reduce el requerimiento de energía externa en un 15%. Si el costo del kWh es de $0.15, ¿cuál es el ahorro económico anual?</p>
+                    <button class="step-btn" onclick="revealStep('p7', 1)">Mostrar Paso 1: Cálculo del Ahorro Mensual en kWh</button>
+                    <div id="p7-s1" class="step-content">
+                        Ahorro mensual = $12,000 \text{ kWh} \times 0.15 = 1,800 \text{ kWh/mes}$
+                    </div>
+                    <button class="step-btn" onclick="revealStep('p7', 2)" id="p7-b2" style="display:none;">Mostrar Paso 2: Cálculo Económico Anual</button>
+                    <div id="p7-s2" class="step-content">
+                        Ahorro mensual en $ = 1,800 \times 0.15 = \$270$ <br>
+                        Ahorro anual = $\$270 \times 12 \text{ meses} = \$3,240$
+                    </div>
+                    <div id="p7-final" class="final-answer" style="display:none;">✅ Respuesta Final: Ahorro de 1,800 kWh/mes, equivalente a $3,240 anuales.</div>
+                    <button class="step-btn" onclick="revealStep('p7', 3)" id="p7-b3" style="display:none; background: var(--PI-gold); color: var(--PI-dark);">Ver Respuesta Final</button>
+                </div>
+
+                <!-- Problema 8 -->
+                <div class="sustain-box">
+                    <h4>Problema 8: Clasificación de Especies</h4>
+                    <p>Clasifica los siguientes componentes de un proceso industrial en "Especie de Valor" o "Especie de Impacto": <br> 1. Agua de enfriamiento recirculada. <br> 2. Gases VOC (Compuestos Orgánicos Volátiles). <br> 3. Reactivo clave no convertido que se recircula. <br> 4. Emisiones de SOx.</p>
+                    <button class="step-btn" onclick="revealStep('p8', 1)">Mostrar Paso 1: Definiciones</button>
+                    <div id="p8-s1" class="step-content">
+                        <strong>Especies de valor:</strong> reactivo clave, solvente, agua, energía "embebida". <br>
+                        <strong>Especies de impacto:</strong> DQO/DBO, sales, sólidos, VOC, CO₂, NOx, SOx.
+                    </div>
+                    <div id="p8-final" class="final-answer" style="display:none;">✅ Respuesta: 1. Valor, 2. Impacto, 3. Valor, 4. Impacto.</div>
+                    <button class="step-btn" onclick="revealStep('p8', 2)" id="p8-b2" style="display:none; background: var(--PI-gold); color: var(--PI-dark);">Ver Respuesta Final</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz" class="section">
+    <div class="card">
+        <h2>🎯 Quiz de Autoevaluación (10 preguntas al azar de 30)</h2>
+        <div class="quiz-container">
+            <div class="quiz-stats">
+                <span class="quiz-stat">Puntuación: <span id="score">0</span></span>
+                <span class="quiz-stat">Preguntas: <span id="q-count">0</span>/10</span>
+            </div>
+            <div class="quiz-progress"><div class="quiz-progress-bar-bg"><div class="quiz-progress-bar" id="quiz-bar"></div></div></div>
+            <div id="quiz-questions-container"></div>
+            <div style="text-align:center; margin-top:1rem;">
+                <button class="calc-button" onclick="startQuiz()">🔄 Cargar 10 Nuevas Preguntas</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+
+<footer class="footer">
+    <p>Procesos Industriales | Ingeniería Industrial</p>
+    <p>Periodo Académico 2026-1 | Plataforma Educativa</p>
+</footer>
+
+<script>
+    // --- Navegación ---
+    function showSection(id, btn) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (id === 'quiz' && !quizIniciado) {
+            startQuiz();
+            quizIniciado = true;
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showTab(group, id, btn) {
+        const groupEl = document.getElementById(group);
+        groupEl.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        groupEl.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(id).classList.add('active');
+    }
+
+    function toggleMap(element) { 
+        element.parentElement.classList.toggle('open'); 
+    }
+
+    // --- Problemas Paso a Paso ---
+    function revealStep(probId, step) {
+        const stepEl = document.getElementById(probId + '-s' + step);
+        if (stepEl) {
+            stepEl.classList.add('show');
+        }
+        // Mostrar el siguiente botón o la respuesta final
+        const nextBtn = document.getElementById(probId + '-b' + (step + 1));
+        if (nextBtn) {
+            nextBtn.style.display = 'inline-block';
+        }
+        if (window.MathJax) {
+            MathJax.typeset([stepEl]);
+        }
+    }
+
+    // --- Flashcards (20) ---
+    const flashcards = [
+        { q: "¿Qué es una Operación Unitaria?", a: "Etapas donde la materia experimenta cambios físicos sin reacciones químicas (ej. destilación, secado)." },
+        { q: "¿Qué es un Proceso Unitario?", a: "Etapas donde la materia sufre transformación química o bioquímica (ej. combustión, fermentación)." },
+        { q: "Característica principal de un Proceso Continuo", a: "Los materiales entran y salen del sistema de manera continua, sin interrupción." },
+        { q: "Característica principal de un Proceso Discontinuo (Batch)", a: "El material ingresa, se procesa por un tiempo y se retira. Existe acumulación de materia." },
+        { q: "¿Qué define a un proceso en 'Estado Estable'?", a: "Las variables del proceso (presión, temperatura, flujos) no cambian con el tiempo." },
+        { q: "¿Qué es la Recirculación en un proceso?", a: "Parte del flujo de salida regresa al proceso para aumentar el aprovechamiento de materias primas." },
+        { q: "¿Para qué sirve la Purga en un sistema con recirculación?", a: "Para eliminar impurezas o compuestos inertes que se acumularían en el circuito cerrado." },
+        { q: "¿Qué es la Derivación (Bypass)?", a: "Cuando una fracción del flujo evita completamente una operación para controlar propiedades como la temperatura." },
+        { q: "Ecuación general de balance de energía", a: "Acumulación = Entrada + Generación - Salida - Consumo" },
+        { q: "Balance de energía en estado estable sin reacción", a: "Entrada = Salida (Generación y Consumo son 0)." },
+        { q: "Principio de degradación de la energía", a: "Segundo Principio: la calidad de la energía disminuye en las transformaciones, disipándose como calor no aprovechable." },
+        { q: "Definición de Sostenibilidad en procesos industriales", a: "Producir bienes minimizando el impacto ambiental, optimizando recursos y garantizando viabilidad económica y social." },
+        { q: "Primer nivel de la Jerarquía de Mitigación", a: "1. Prevenir (evitar formar residuos o contaminantes)." },
+        { q: "Tercer nivel de la Jerarquía de Mitigación", a: "3. Reutilizar/Reciclar (cerrar ciclos)." },
+        { q: "¿Qué son las 'Especies de Valor' en un balance?", a: "Reactivo clave, solvente, agua y energía 'embebida' que se busca recuperar." },
+        { q: "¿Qué son las 'Especies de Impacto'?", a: "DQO/DBO, sales, sólidos, VOC, CO₂, NOx, SOx, etc., que se busca minimizar." },
+        { q: "¿Qué es el COP en refrigeración?", a: "Coeficiente de Operación (Desempeño). Relación entre el efecto de refrigeración deseado y el trabajo neto de entrada." },
+        { q: "Unidad de refrigeración (TR)", a: "Tonelada de Refrigeración. Equivale aproximadamente a 3.517 kW de capacidad de enfriamiento." },
+        { q: "En un ciclo de potencia Rankine, ¿dónde se añade calor?", a: "En la caldera (generador de vapor)." },
+        { q: "Objetivo de la integración energética", a: "Reducir el requerimiento de energía externa (Q, W) por unidad de producto, aumentando la eficiencia." }
+    ];
+
+    let currentFc = 0, goodFc = 0, badFc = 0;
+    
+    function loadFlashcard() {
+        if (currentFc >= flashcards.length) {
+            document.getElementById('fc-question').innerText = "¡Has terminado las 20 flashcards!";
+            document.getElementById('fc-answer').innerText = `Buenas: ${goodFc}, Malas: ${badFc}`;
+            document.getElementById('btn-fc-good').disabled = true;
+            document.getElementById('btn-fc-bad').disabled = true;
+            return;
+        }
+        document.getElementById('fc-question').innerText = flashcards[currentFc].q;
+        document.getElementById('fc-answer').innerText = flashcards[currentFc].a;
+        document.getElementById('fc-left').innerText = flashcards.length - currentFc;
+        document.getElementById('fc-bar').style.width = `${(currentFc / flashcards.length) * 100}%`;
+        if(window.MathJax) MathJax.typeset([document.getElementById('fc-card')]);
+    }
+
+    function flipCard() { 
+        const card = document.getElementById('fc-card');
+        card.classList.toggle('flipped');
+        if (card.classList.contains('flipped')) {
+            document.getElementById('btn-fc-good').disabled = false;
+            document.getElementById('btn-fc-bad').disabled = false;
+        }
+    }
+
+    function gradeCard(isGood) {
+        if (isGood) goodFc++; else badFc++;
+        document.getElementById('fc-good').innerText = goodFc;
+        document.getElementById('fc-bad').innerText = badFc;
+        currentFc++;
+        document.getElementById('fc-card').classList.remove('flipped');
+        document.getElementById('btn-fc-good').disabled = true;
+        document.getElementById('btn-fc-bad').disabled = true;
+        setTimeout(() => { loadFlashcard(); }, 300);
+    }
+
+    function resetFlashcards() {
+        currentFc = 0; goodFc = 0; badFc = 0;
+        document.getElementById('fc-good').innerText = 0;
+        document.getElementById('fc-bad').innerText = 0;
+        document.getElementById('btn-fc-good').disabled = false;
+        document.getElementById('btn-fc-bad').disabled = false;
+        document.getElementById('fc-card').classList.remove('flipped');
+        loadFlashcard();
+    }
+    loadFlashcard();
+
+    // --- Quiz (30 Preguntas, 10 al azar) ---
+    const allQuestions = [
+        { q: "¿Cuál de las siguientes es una Operación Unitaria?", o: ["Fermentación", "Combustión", "Destilación", "Polimerización"], c: 2, e: "La destilación es un cambio físico (separación), no hay reacción química." },
+        { q: "En un proceso discontinuo (batch), ¿qué ocurre con la masa?", o: ["No hay acumulación", "Existe acumulación de materia en el sistema", "El flujo es continuo", "La presión es siempre constante"], c: 1, e: "En batch, el material se carga, se procesa y se descarga, habiendo acumulación durante el proceso." },
+        { q: "Un proceso en 'Estado Estable' se caracteriza porque:", o: ["Las variables cambian con el tiempo", "Las variables no cambian con el tiempo", "Siempre hay reacción química", "Es intermitente"], c: 1, e: "En estado estable (régimen permanente), las variables del proceso permanecen constantes en el tiempo." },
+        { q: "¿Qué función cumple la 'Purga' en un sistema con recirculación?", o: ["Aumentar la temperatura", "Eliminar impurezas o inertes acumulados", "Añadir más reactivo fresco", "Detener la reacción"], c: 1, e: "La purga evita la acumulación infinita de componentes inertes o impurezas en el circuito cerrado." },
+        { q: "La Derivación (Bypass) permite:", o: ["Aumentar la presión del sistema", "Controlar propiedades como temperatura o concentración", "Eliminar residuos sólidos", "Aumentar la generación de calor"], c: 1, e: "El bypass mezcla una corriente que no pasó por el equipo con la que sí pasó, para ajustar propiedades finales." },
+        { q: "En la ecuación general de balance de energía, si no hay reacción química:", o: ["Generación y Consumo son cero", "La acumulación siempre es positiva", "La entrada es siempre cero", "La energía se destruye"], c: 0, e: "Sin reacción, no hay generación ni consumo de energía por términos químicos, por lo que Entrada = Salida (en estado estable)." },
+        { q: "El principio de degradación de la energía está asociado a:", o: ["El Primer Principio de la Termodinámica", "El Segundo Principio de la Termodinámica", "La Ley de Conservación de la Masa", "La Ley de Ohm"], c: 1, e: "El Segundo Principio establece que la calidad de la energía disminuye, disipándose como calor no útil." },
+        { q: "¿Cuál es el primer paso en la Jerarquía de Mitigación de la sostenibilidad?", o: ["Tratar", "Disponer", "Prevenir", "Reciclar"], c: 2, e: "El orden de preferencia es: 1. Prevenir, 2. Reducir, 3. Reutilizar/Reciclar, 4. Tratar, 5. Disponer." },
+        { q: "En un balance de materia sostenible, el CO₂ y la DQO se consideran:", o: ["Especies de valor", "Especies de impacto", "Catalizadores", "Productos netos deseables"], c: 1, e: "Son especies de impacto que se busca minimizar en su generación o salida." },
+        { q: "La sostenibilidad en procesos industriales busca optimizar:", o: ["Solo la ganancia económica", "Energía, agua, materias primas y responsabilidad social", "La generación de residuos", "El consumo de combustibles fósiles"], c: 1, e: "Busca el equilibrio entre minimizar impacto ambiental, optimizar recursos y garantizar viabilidad económica y social." },
+        { q: "¿Qué es una Tonelada de Refrigeración (TR)?", o: ["Una unidad de masa", "Una unidad de potencia de enfriamiento (~3.517 kW)", "La presión del condensador", "El flujo másico del compresor"], c: 1, e: "Es una unidad de potencia que mide la capacidad de extracción de calor de un sistema de refrigeración." },
+        { q: "En un ciclo ideal de refrigeración por compresión de vapor, el fluido entra al compresor como:", o: ["Líquido saturado", "Vapor saturado", "Mezcla bifásica", "Líquido subenfriado"], c: 1, e: "En el ciclo ideal, para evitar daño al compresor (golpe de líquido), entra como vapor saturado." },
+        { q: "El COP (Coeficiente de Operación) de un refrigerador es:", o: ["Siempre menor que 1", "La relación entre el efecto de refrigeración y el trabajo de entrada", "La presión del evaporador", "La temperatura del condensador"], c: 1, e: "COP = Q_L / W_net. Representa cuántas unidades de enfriamiento se obtienen por cada unidad de trabajo." },
+        { q: "En un ciclo de potencia Rankine, el componente que eleva la presión del líquido es:", o: ["La turbina", "El condensador", "La bomba", "La caldera"], c: 2, e: "La bomba toma el líquido saturado del condensador y eleva su presión hacia la caldera." },
+        { q: "Si un proceso tiene 'Acumulación = 0', 'Generación = 0' y 'Consumo = 0', entonces:", o: ["Entrada > Salida", "Entrada = Salida", "Salida > Entrada", "El proceso es discontinuo"], c: 1, e: "Es la definición de balance en estado estable sin reacción: lo que entra es igual a lo que sale." },
+        { q: "Un ejemplo de Proceso Unitario es:", o: ["Filtración", "Secado", "Fermentación de carbohidratos", "Mezclado"], c: 2, e: "La fermentación implica una transformación bioquímica (reacción), a diferencia de las operaciones unitarias que son solo físicas." },
+        { q: "La recirculación en un proceso químico sirve principalmente para:", o: ["Aumentar los residuos", "Mejorar la conversión global y aprovechar materias primas", "Aumentar la temperatura sin control", "Eliminar el producto neto"], c: 1, e: "Permite devolver reactivo no convertido al proceso, aumentando la conversión global y la eficiencia." },
+        { q: "¿Cuál de las siguientes es una fuente de energía renovable mencionada en sostenibilidad?", o: ["Carbón", "Gas Natural", "Energía Solar", "Petróleo"], c: 2, e: "La energía solar es limpia, inagotable y se regenera naturalmente, reduciendo la dependencia de fósiles." },
+        { q: "En la ecuación de balance de materia: Acumulación = Entrada - Salida + ...", o: ["- Generación + Consumo", "+ Generación - Consumo", "+ Generación + Consumo", "- Generación - Consumo"], c: 1, e: "La ecuación correcta es: Acumulación = Entrada - Salida + Generación - Consumo." },
+        { q: "El subenfriamiento en el condensador de un ciclo de refrigeración real:", o: ["Disminuye el COP", "Aumenta el efecto de refrigeración útil", "Daña el compresor", "No tiene ningún efecto"], c: 1, e: "El subenfriamiento del líquido a la salida del condensador aumenta la capacidad de enfriamiento en el evaporador." },
+        { q: "Un proceso semicontinuo se caracteriza por:", o: ["Flujo totalmente ininterrumpido", "Intercambio de materia durante el tiempo de operación, sin ser ni continuo ni discontinuo puro", "No tener entrada ni salida", "Ser exclusivamente por lotes cerrados"], c: 1, e: "Ejemplo: llenar un tanque sin retirar nada, o extracción sólido-líquido donde hay intercambio durante la operación." },
+        { q: "La eficiencia adiabática de una turbina compara:", o: ["El trabajo real con el trabajo isentrópico (ideal)", "La presión de entrada con la de salida", "El calor con la temperatura", "El flujo másico con el volumen"], c: 0, e: "Es la relación entre el trabajo real obtenido y el trabajo que se obtendría en un proceso isentrópico (reversible y adiabático)." },
+        { q: "Para mejorar la sostenibilidad, se busca 'Aumentar':", o: ["Generación de efluentes", "Rendimiento, selectividad y reciclo/recuperación", "Riesgos y toxicidad", "Consumo de materia prima"], c: 1, e: "Los objetivos de sostenibilidad son aumentar el rendimiento, la integración energética y el reuso." },
+        { q: "En un diagrama T-s (Temperatura vs Entropía), el área bajo la curva de un proceso reversible representa:", o: ["El trabajo", "El calor transferido", "La presión", "La entalpía"], c: 1, e: "En un diagrama T-s, el área bajo la curva representa el calor transferido durante el proceso." },
+        { q: "El gas natural se considera principalmente compuesto por:", o: ["Etano", "Propano", "Metano", "Butano"], c: 2, e: "El gas natural es mayoritariamente metano (CH4), como se menciona en los problemas de combustión de la guía." },
+        { q: "¿Qué sucede con la energía interna de un gas ideal si su temperatura disminuye en un proceso adiabático?", o: ["Aumenta", "Disminuye", "Permanece constante", "Se vuelve negativa"], c: 1, e: "ΔU = m*Cv*ΔT. Si la temperatura baja (expansión adiabática realizando trabajo), la energía interna disminuye." },
+        { q: "La 'disponer' en la jerarquía de mitigación significa:", o: ["El primer recurso a utilizar", "El último recurso, después de prevenir, reducir, reciclar y tratar", "Reutilizar el agua", "Optimizar la reacción"], c: 1, e: "Disponer (ej. relleno sanitario) es la última opción cuando todas las demás estrategias de mitigación han sido aplicadas." },
+        { q: "En un ciclo de potencia, el fluido de trabajo en la caldera:", o: ["Se condensa", "Se expande", "Recibe calor y se vaporiza", "Se estrangula"], c: 2, e: "En la caldera, el fluido recibe calor a presión constante, pasando de líquido a vapor (o vapor sobrecalentado)." },
+        { q: "La selectividad en una reacción química se relaciona con sostenibilidad porque:", o: ["Aumenta los residuos", "Una mejor selectividad reduce la generación de especies de impacto (subproductos no deseados)", "No tiene relación", "Aumenta el consumo de energía"], c: 1, e: "Mayor selectividad significa que más reactivo se convierte en el producto deseado, minimizando subproductos contaminantes." },
+        { q: "Un intercambiador de calor es un ejemplo de:", o: ["Proceso Unitario", "Operación Unitaria", "Reactor químico", "Sistema de purga"], c: 1, e: "Es una operación unitaria, ya que solo implica transferencia de calor (cambio físico) sin reacción química." }
+    ];
+    
+    let activeQuestions = [];
+    let quizScore = 0, quizAnswered = 0;
+    let quizIniciado = false;
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    function startQuiz() {
+        shuffleArray(allQuestions);
+        activeQuestions = allQuestions.slice(0, 10);
+        quizScore = 0; quizAnswered = 0;
+        document.getElementById('score').innerText = 0;
+        document.getElementById('q-count').innerText = 0;
+        document.getElementById('quiz-bar').style.width = '0%';
+        renderQuiz();
+    }
+
+    function renderQuiz() {
+        const container = document.getElementById('quiz-questions-container');
+        container.innerHTML = '';
+        activeQuestions.forEach((qObj, index) => {
+            const card = document.createElement('div');
+            card.className = 'quiz-question-card';
+            let optionsHtml = '';
+            qObj.o.forEach((opt, i) => {
+                optionsHtml += `<button class="quiz-option" onclick="checkQuiz(this, ${index}, ${i === qObj.c})">${opt}</button>`;
+            });
+            card.innerHTML = `
+                <div class="quiz-question">${index + 1}. ${qObj.q}</div>
+                <div class="quiz-options">${optionsHtml}</div>
+                <div class="quiz-explanation">${qObj.e}</div>
+            `;
+            container.appendChild(card);
+        });
+        if(window.MathJax) MathJax.typeset([container]);
+    }
+
+    function checkQuiz(btn, qIndex, isCorrect) {
+        const card = btn.closest('.quiz-question-card');
+        const options = card.querySelectorAll('.quiz-option');
+        const explanation = card.querySelector('.quiz-explanation');
+        
+        options.forEach(o => o.disabled = true);
+        
+        if (isCorrect) {
+            btn.classList.add('correct');
+            quizScore++;
+        } else {
+            btn.classList.add('incorrect');
+            options.forEach((o, i) => {
+                if (i === activeQuestions[qIndex].c) o.classList.add('correct');
+            });
+        }
+        explanation.style.display = 'block';
+        quizAnswered++;
+        document.getElementById('score').innerText = quizScore;
+        document.getElementById('q-count').innerText = quizAnswered;
+        document.getElementById('quiz-bar').style.width = `${(quizAnswered / 10) * 100}%`;
+    }
+</script>
+
+</body>
+</html>
