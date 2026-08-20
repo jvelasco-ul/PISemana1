@@ -158,9 +158,15 @@
     <div class="nav-buttons">
         <button class="nav-btn active" onclick="showSection('inicio', this)">🏠 Inicio</button>
         <button class="nav-btn" onclick="showSection('conceptos', this)">📚 Conceptos</button>
+        <button class="nav-btn" onclick="showSection('memotecnias', this)">🧠 Memotecnias</button>
+        <button class="nav-btn" onclick="showSection('protocolo', this)">📋 Protocolo</button>
+        <button class="nav-btn" onclick="showSection('glosario', this)">📖 Glosario</button>
+        <button class="nav-btn" onclick="showSection('errores', this)">⚠️ Errores Comunes</button>
         <button class="nav-btn" onclick="showSection('mapa', this)">🗺️ Mapa Conceptual</button>
         <button class="nav-btn" onclick="showSection('flashcards', this)">🃏 Flashcards</button>
         <button class="nav-btn" onclick="showSection('problemas', this)">📝 Problemas Paso a Paso</button>
+        <button class="nav-btn" onclick="showSection('bibliografia', this)">📑 Bibliografía</button>
+        <button class="nav-btn" onclick="showSection('videos', this)">🎥 Videos</button>
         <button class="nav-btn" onclick="showSection('quiz', this)">🎯 Quiz (30 Preguntas)</button>
     </div>
 </nav>
@@ -240,6 +246,185 @@
                 </div>
                 <p>En balances de materia, se analizan <strong>especies de valor</strong> (reactivo clave, agua, energía embebida) y <strong>especies de impacto</strong> (DQO/DBO, CO₂, NOx, sólidos). La mejora sostenible busca reducir la "Generación" o "Salida" de estas últimas.</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ MEMOTECNIAS ============ -->
+<section id="memotecnias" class="section">
+    <div class="card">
+        <h2><i class="fas fa-brain"></i> Memotecnias y Fórmulas Clave</h2>
+        <p>Las fórmulas que debes tener grabadas a fuego para los exámenes y la vida profesional.</p>
+
+        <h3>1. Principios Básicos y Energía</h3>
+        <div class="info-box">
+            <p><strong>Primera Ley (Sistema Cerrado):</strong></p>
+            $$ \Delta U + \Delta E_k + \Delta E_p = Q - W $$
+            <p><em>Truco:</em> "La energía que entra (Q) menos la que sale como trabajo (W) se queda adentro (ΔU)".</p>
+        </div>
+        <div class="info-box">
+            <p><strong>Energía Eléctrica:</strong></p>
+            $$ E (kWh) = P (kW) \times t (h) \quad \rightarrow \quad 1 \text{ kWh} = 3600 \text{ kJ} $$
+        </div>
+        <div class="info-box">
+            <p><strong>Energía Interna (Gases Ideales / Líquidos incompresibles):</strong></p>
+            $$ \Delta U = m \cdot C_v \cdot (T_2 - T_1) $$
+            <p><em>Truco:</em> Usa $C_v$ para $\Delta U$ y $C_p$ para $\Delta H$.</p>
+        </div>
+
+        <h3>2. Volúmenes de Control (Sistemas Abiertos)</h3>
+        <div class="info-box">
+            <p><strong>Balance de Masa (Estado Estacionario):</strong></p>
+            $$ \sum \dot{m}_{in} = \sum \dot{m}_{out} \quad \rightarrow \quad \rho_1 A_1 v_1 = \rho_2 A_2 v_2 $$
+        </div>
+        <div class="info-box">
+            <p><strong>Balance de Energía (Estado Estacionario):</strong></p>
+            $$ \dot{Q} - \dot{W} = \sum \dot{m}_{out} h_{out} - \sum \dot{m}_{in} h_{in} $$
+            <p><em>Nota:</em> Si no hay trabajo ni cambios de E_k/E_p, se reduce a $\dot{Q} = \Delta \dot{H}$ (Intercambiadores de calor).</p>
+        </div>
+
+        <h3>3. Ciclos de Potencia y Refrigeración</h3>
+        <div class="info-box">
+            <p><strong>Eficiencia Térmica (Rankine / Potencia):</strong></p>
+            $$ \eta_{th} = \frac{W_{neto}}{Q_{in}} = 1 - \frac{Q_{out}}{Q_{in}} $$
+        </div>
+        <div class="info-box">
+            <p><strong>Coeficiente de Operación (Refrigeración - COP):</strong></p>
+            $$ COP_R = \frac{Efecto\_Deseado}{Trabajo\_Neto} = \frac{Q_L}{W_{in}} $$
+            <p><em>Truco:</em> En refrigeración, lo que "queremos" es el calor extraído del espacio frío ($Q_L$).</p>
+        </div>
+        <div class="info-box">
+            <p><strong>Eficiencia Isoentrópica (Compresor / Turbina):</strong></p>
+            $$ \eta_{comp} = \frac{h_{2s} - h_1}{h_{2a} - h_1} \quad ; \quad \eta_{turb} = \frac{h_1 - h_{2a}}{h_1 - h_{2s}} $$
+        </div>
+    </div>
+</section>
+
+<!-- ============ PROTOCOLO ============ -->
+<section id="protocolo" class="section">
+    <div class="card">
+        <h2><i class="fas fa-list-ol"></i> Protocolo Paso a Paso para Resolver Problemas</h2>
+        <p>Sigue este algoritmo mental para cualquier problema de termodinámica o balances. Te ahorrará horas de frustración.</p>
+
+        <ol>
+            <li>
+                <h3>Paso 1: Esquematizar el Sistema</h3>
+                <p>Dibuja el dispositivo (compresor, turbina, tanque). Identifica las fronteras del <strong>Volumen de Control</strong>. Dibuja los diagramas $T-s$ y $P-h$ si es un ciclo.</p>
+            </li>
+            <li>
+                <h3>Paso 2: Identificar el Tipo de Proceso</h3>
+                <p>¿Es estado estable o transitorio? ¿Es adiabático ($Q=0$)? ¿Es isoentrópico ($s_1=s_2$)? ¿Es isotérmico?</p>
+            </li>
+            <li>
+                <h3>Paso 3: Listar las Hipótesis</h3>
+                <p>Escribe: "Se desprecian $\Delta E_k$ y $\Delta E_p$", "Proceso adiabático", "Flujo estacionario".</p>
+            </li>
+            <li>
+                <h3>Paso 4: Determinar las Propiedades (El paso más crítico)</h3>
+                <p>Para cada estado (1, 2, 3...), usa los datos dados (P, T, x) para buscar en las <strong>Tablas de Vapor / Refrigerante</strong>.<br>
+                <em>¡Ojo!</em> Primero verifica la fase: Compara $T$ con $T_{sat}$ o $P$ con $P_{sat}$ para saber si es líquido comprimido, mezcla saturada o vapor sobrecalentado.</p>
+            </li>
+            <li>
+                <h3>Paso 5: Aplicar Ecuaciones de Conservación</h3>
+                <ul>
+                    <li><strong>Masa:</strong> $\dot{m}_{in} = \dot{m}_{out}$</li>
+                    <li><strong>Energía:</strong> $\dot{Q} - \dot{W} = \dot{m}(h_{out} - h_{in})$</li>
+                </ul>
+            </li>
+            <li>
+                <h3>Paso 6: Despejar, Calcular y Validar</h3>
+                <p>Resuelve la matemática. ¿El signo tiene sentido físico? (Ej. El trabajo del compresor debe ser negativo o positivo según tu convención, pero la magnitud debe ser coherente). Revisa las unidades (kJ vs J, kPa vs Pa).</p>
+            </li>
+        </ol>
+    </div>
+</section>
+
+<!-- ============ GLOSARIO ============ -->
+<section id="glosario" class="section">
+    <div class="card">
+        <h2><i class="fas fa-book"></i> Glosario Técnico Universitario</h2>
+        
+        <details class="bio-box" style="border-left: 5px solid var(--PI-gray); margin-bottom: 1rem;">
+            <summary style="cursor: pointer; font-weight: bold; padding: 1rem; background: #f8f9fa; border-radius: 5px;">Volumen de Control</summary>
+            <div style="padding: 1rem;">Región del espacio seleccionada para el análisis. Puede ser fijo o deformable. La masa y energía cruzan su frontera.</div>
+        </details>
+        
+        <details class="bio-box" style="border-left: 5px solid var(--PI-gray); margin-bottom: 1rem;">
+            <summary style="cursor: pointer; font-weight: bold; padding: 1rem; background: #f8f9fa; border-radius: 5px;">Estado Estacionario (Régimen Permanente)</summary>
+            <div style="padding: 1rem;">Condición en la que las propiedades dentro del volumen de control no cambian con el tiempo. La Acumulación es cero.</div>
+        </details>
+        
+        <details class="bio-box" style="border-left: 5px solid var(--PI-gray); margin-bottom: 1rem;">
+            <summary style="cursor: pointer; font-weight: bold; padding: 1rem; background: #f8f9fa; border-radius: 5px;">Título (x)</summary>
+            <div style="padding: 1rem;">En una mezcla saturada (líquido-vapor), es la relación entre la masa de vapor y la masa total. $x = m_v / m_{total}$. Solo aplica en la región de saturación.</div>
+        </details>
+        
+        <details class="bio-box" style="border-left: 5px solid var(--PI-gray); margin-bottom: 1rem;">
+            <summary style="cursor: pointer; font-weight: bold; padding: 1rem; background: #f8f9fa; border-radius: 5px;">Subenfriamiento (Líquido Comprimido)</summary>
+            <div style="padding: 1rem;">Cuando un líquido está a una temperatura menor a su temperatura de saturación para la presión dada ($T < T_{sat}$).</div>
+        </details>
+        
+        <details class="bio-box" style="border-left: 5px solid var(--PI-gray); margin-bottom: 1rem;">
+            <summary style="cursor: pointer; font-weight: bold; padding: 1rem; background: #f8f9fa; border-radius: 5px;">Sobrecalentamiento (Vapor Sobrecalentado)</summary>
+            <div style="padding: 1rem;">Cuando un vapor está a una temperatura mayor a su temperatura de saturación para la presión dada ($T > T_{sat}$).</div>
+        </details>
+        
+        <details class="bio-box" style="border-left: 5px solid var(--PI-gray); margin-bottom: 1rem;">
+            <summary style="cursor: pointer; font-weight: bold; padding: 1rem; background: #f8f9fa; border-radius: 5px;">TR (Tonelada de Refrigeración)</summary>
+            <div style="padding: 1rem;">Unidad de capacidad de refrigeración. Equivale a la tasa de transferencia de calor necesaria para congelar 1 tonelada corta de agua a 0°C en 24 horas. $1 \text{ TR} \approx 3.517 \text{ kW}$.</div>
+        </details>
+        
+        <details class="bio-box" style="border-left: 5px solid var(--PI-gray); margin-bottom: 1rem;">
+            <summary style="cursor: pointer; font-weight: bold; padding: 1rem; background: #f8f9fa; border-radius: 5px;">Proceso Adiabático</summary>
+            <div style="padding: 1rem;">Proceso en el que no hay transferencia de calor hacia o desde el sistema ($Q = 0$).</div>
+        </details>
+        
+        <details class="bio-box" style="border-left: 5px solid var(--PI-gray); margin-bottom: 1rem;">
+            <summary style="cursor: pointer; font-weight: bold; padding: 1rem; background: #f8f9fa; border-radius: 5px;">Proceso Isoentrópico</summary>
+            <div style="padding: 1rem;">Proceso que es adiabático y además reversible (no hay fricción ni irreversibilidades). La entropía se mantiene constante ($s_1 = s_2$). Es el modelo ideal para turbinas y compresores.</div>
+        </details>
+        
+        <details class="bio-box" style="border-left: 5px solid var(--PI-gray); margin-bottom: 1rem;">
+            <summary style="cursor: pointer; font-weight: bold; padding: 1rem; background: #f8f9fa; border-radius: 5px;">Presión Manométrica vs. Absoluta</summary>
+            <div style="padding: 1rem;">La manométrica es la medida relativa a la atmosférica ($P_{man} = P_{abs} - P_{atm}$). Las tablas termodinámicas SIEMPRE usan Presión Absoluta.</div>
+        </details>
+    </div>
+</section>
+
+<!-- ============ ERRORES COMUNES ============ -->
+<section id="errores" class="section">
+    <div class="card">
+        <h2><i class="fas fa-exclamation-triangle"></i> Errores Fatales (Lo que todos cometemos)</h2>
+        <p>Basado en el análisis de miles de exámenes universitarios, estos son los errores que más puntos restan:</p>
+
+        <div class="tip-box" style="background: linear-gradient(135deg, #fdedec 0%, #fee); border-left: 5px solid var(--accent);">
+            <h3>1. Confundir Presión Manométrica con Absoluta</h3>
+            <p><strong>El Error:</strong> Usar 100 kPa (manométrica) directamente en las tablas de vapor.</p>
+            <p><strong>La Solución:</strong> Las tablas termodinámicas requieren Presión Absoluta. $P_{abs} = P_{man} + P_{atm}$. (Ej. Olla a presión: $100 + 101 = 201 \text{ kPa}$).</p>
+        </div>
+
+        <div class="tip-box" style="background: linear-gradient(135deg, #fdedec 0%, #fee); border-left: 5px solid var(--accent);">
+            <h3>2. El Caos de las Unidades (kJ vs J, kPa vs Pa)</h3>
+            <p><strong>El Error:</strong> Multiplicar $P$ en $kPa$ por $V$ en $m^3$ y olvidar que el resultado está en $kJ$, no en $J$. O usar $C_p$ en $J/kgK$ con masas en $kg$ y esperar $kJ$.</p>
+            <p><strong>La Solución:</strong> Escribe SIEMPRE las unidades en cada paso intermedio. $1 \text{ kPa} \cdot m^3 = 1 \text{ kJ}$.</p>
+        </div>
+
+        <div class="tip-box" style="background: linear-gradient(135deg, #fdedec 0%, #fee); border-left: 5px solid var(--accent);">
+            <h3>3. No verificar la Fase antes de buscar en la Tabla</h3>
+            <p><strong>El Error:</strong> Te dan $P = 1 \text{ MPa}$ y $T = 50^\circ\text{C}$, y buscas directo en la tabla de vapor sobrecalentado, cuando en realidad es líquido comprimido (porque $50^\circ\text{C} < T_{sat}$ a 1 MPa).</p>
+            <p><strong>La Solución:</strong> Regla de oro: Siempre compara $T$ con $T_{sat}$ o $P$ con $P_{sat}$ antes de abrir la tabla.</p>
+        </div>
+
+        <div class="tip-box" style="background: linear-gradient(135deg, #fdedec 0%, #fee); border-left: 5px solid var(--accent);">
+            <h3>4. Signos de Q y W en Sistemas Abiertos</h3>
+            <p><strong>El Error:</strong> Poner el trabajo del compresor como positivo en la ecuación $\dot{Q} - \dot{W}$.</p>
+            <p><strong>La Solución:</strong> Usa la convención estricta: $Q_{in}$ es positivo, $Q_{out}$ es negativo. $W_{out}$ (turbina) es positivo, $W_{in}$ (compresor/bomba) es negativo. O usa $\dot{Q}_{in} + \dot{W}_{in} = \dot{Q}_{out} + \dot{W}_{out}$.</p>
+        </div>
+
+        <div class="tip-box" style="background: linear-gradient(135deg, #fdedec 0%, #fee); border-left: 5px solid var(--accent);">
+            <h3>5. Confundir $C_p$ y $C_v$</h3>
+            <p><strong>El Error:</strong> Calcular $\Delta H$ usando $C_v$.</p>
+            <p><strong>La Solución:</strong> $\Delta U = m C_v \Delta T$ (Volumen constante / Sistema cerrado). $\Delta H = m C_p \Delta T$ (Presión constante / Sistemas abiertos con gases ideales).</p>
         </div>
     </div>
 </section>
@@ -496,6 +681,82 @@
                     <button class="step-btn" onclick="revealStep('p8', 2)" id="p8-b2" style="display:none; background: var(--PI-gold); color: var(--PI-dark);">Ver Respuesta Final</button>
                 </div>
 
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ BIBLIOGRAFIA ============ -->
+<section id="bibliografia" class="section">
+    <div class="card">
+        <h2><i class="fas fa-bookmark"></i> Bibliografía y Recursos Académicos</h2>
+        
+        <h3>Libros de Texto Fundamentales</h3>
+        <ul>
+            <li><strong>Cengel, Y. A., & Boles, M. A.</strong> (2019). <em>Thermodynamics: An Engineering Approach</em> (9th ed.). McGraw-Hill Education. <br><em>(La biblia de la termodinámica, de aquí salen la mayoría de los problemas de la guía).</em></li>
+            <li><strong>Felder, R. M., & Rousseau, R. W.</strong> (2016). <em>Elementary Principles of Chemical Processes</em>. Wiley. <br><em>(Ideal para balances de materia y energía en estado estacionario).</em></li>
+            <li><strong>Moran, M. J., & Shapiro, H. N.</strong> (2018). <em>Fundamentals of Engineering Thermodynamics</em>. Wiley.</li>
+        </ul>
+
+        <h3>Papers y Artículos sobre Sostenibilidad e Integración Energética</h3>
+        <ul>
+            <li><strong>Klemesš, J. J., et al.</strong> (2018). "Assessment and integration of renewable energy sources in industrial processes". <em>Journal of Cleaner Production</em>. <br><em>(Enfoque en cómo optimizar el Q y W usando fuentes renovables).</em></li>
+            <li><strong>Smith, R.</strong> (2016). <em>Chemical Process Design and Integration</em>. Wiley. <br><em>(Capítulo sobre Pinch Analysis para integración energética y reducción de Q externa).</em></li>
+            <li><strong>IEA (International Energy Agency)</strong>. (2022). "Energy Efficiency in Industrial Processes". <em>IEA Reports</em>. <br><em>(Datos reales sobre el impacto de la sostenibilidad en la industria global).</em></li>
+        </ul>
+    </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos" class="section">
+    <div class="card">
+        <h2><i class="fab fa-youtube"></i> Videos Tutoriales Recomendados</h2>
+        <p>He seleccionado los mejores tipos de problemas resueltos. <em>Nota: Los enlaces dirigen a la búsqueda exacta de YouTube para garantizar que encuentres los videos más actualizados y mejor valorados de canales universitarios en español.</em></p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+            <div class="card" style="background: var(--white); border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; transition: transform 0.2s;">
+                <span style="display: inline-block; background: var(--PI-orange); color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; margin-bottom: 0.5rem;">Ciclo de Potencia</span>
+                <a href="https://www.youtube.com/results?search_query=Ciclo+de+Rankine+Ideal+y+Real+Resolucion+paso+a+paso" target="_blank" style="color: var(--PI-orange-dark); text-decoration: none; font-weight: bold; display: block; margin-bottom: 0.5rem;">
+                    <i class="fas fa-play-circle"></i> Ciclo de Rankine Ideal y Real - Resolución paso a paso
+                </a>
+                <p><strong>Tipo de problema:</strong> Turbina, Bomba, Caldera, Condensador.</p>
+                <p><strong>Info a usar:</strong> Tablas de vapor, eficiencia isoentrópica, $\eta_{th}$.</p>
+            </div>
+
+            <div class="card" style="background: var(--white); border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; transition: transform 0.2s;">
+                <span style="display: inline-block; background: var(--PI-orange); color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; margin-bottom: 0.5rem;">Refrigeración</span>
+                <a href="https://www.youtube.com/results?search_query=Ciclo+Refrigeracion+Compresion+Vapor+R134a+Diagrama+Ph" target="_blank" style="color: var(--PI-orange-dark); text-decoration: none; font-weight: bold; display: block; margin-bottom: 0.5rem;">
+                    <i class="fas fa-play-circle"></i> Ciclo de Refrigeración por Compresión de Vapor (R-134a)
+                </a>
+                <p><strong>Tipo de problema:</strong> Compresor, Condensador, Válvula, Evaporador.</p>
+                <p><strong>Info a usar:</strong> Tablas R-134a, Diagrama P-h, TR, COP.</p>
+            </div>
+
+            <div class="card" style="background: var(--white); border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; transition: transform 0.2s;">
+                <span style="display: inline-block; background: var(--PI-orange); color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; margin-bottom: 0.5rem;">Balances</span>
+                <a href="https://www.youtube.com/results?search_query=Balance+Energia+Volumen+Control+Estado+Estacionario+Termodinamica" target="_blank" style="color: var(--PI-orange-dark); text-decoration: none; font-weight: bold; display: block; margin-bottom: 0.5rem;">
+                    <i class="fas fa-play-circle"></i> Balance de Energía en Volumen de Control (Estado Estacionario)
+                </a>
+                <p><strong>Tipo de problema:</strong> Intercambiadores de calor, Secadoras, Mezcladores.</p>
+                <p><strong>Info a usar:</strong> $\dot{Q} - \dot{W} = \Delta \dot{H}$, flujos másicos.</p>
+            </div>
+
+            <div class="card" style="background: var(--white); border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; transition: transform 0.2s;">
+                <span style="display: inline-block; background: var(--PI-orange); color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; margin-bottom: 0.5rem;">Primera Ley</span>
+                <a href="https://www.youtube.com/results?search_query=Olla+a+Presion+Primera+Ley+Termodinamica+Diagrama+Cuerpo+Libre" target="_blank" style="color: var(--PI-orange-dark); text-decoration: none; font-weight: bold; display: block; margin-bottom: 0.5rem;">
+                    <i class="fas fa-play-circle"></i> Olla a Presión y Primera Ley (Cuerpo Libre)
+                </a>
+                <p><strong>Tipo de problema:</strong> Sistema cerrado/abierto, presión manométrica vs absoluta.</p>
+                <p><strong>Info a usar:</strong> $P = F/A$, $P_{abs} = P_{man} + P_{atm}$.</p>
+            </div>
+
+            <div class="card" style="background: var(--white); border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; transition: transform 0.2s;">
+                <span style="display: inline-block; background: var(--PI-orange); color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; margin-bottom: 0.5rem;">Diagramas</span>
+                <a href="https://www.youtube.com/results?search_query=Como+usar+Diagrama+T-s+y+Mollier+Ph+Termodinamica" target="_blank" style="color: var(--PI-orange-dark); text-decoration: none; font-weight: bold; display: block; margin-bottom: 0.5rem;">
+                    <i class="fas fa-play-circle"></i> Cómo usar Diagramas T-s y Mollier (P-h)
+                </a>
+                <p><strong>Tipo de problema:</strong> Interpretación gráfica de ciclos.</p>
+                <p><strong>Info a usar:</strong> Líneas de saturación, isotermas, isoentropas.</p>
             </div>
         </div>
     </div>
